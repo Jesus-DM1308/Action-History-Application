@@ -15,6 +15,9 @@
             android:name="com.example.actionhistory.taskmanager.controller.TaskFormActivity"
             android:exported="true"/>
         <activity
+            android:name="com.example.actionhistory.controller.HistoryListActivity"
+            android:exported="false"/>
+        <activity
             android:name="com.example.actionhistory.taskmanager.controller.TaskListActivity"
             android:exported="true">
             <intent-filter>

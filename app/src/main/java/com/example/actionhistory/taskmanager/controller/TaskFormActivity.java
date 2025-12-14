@@ -10,14 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.example.actionhistory.R;
-import com.example.actionhistory.taskmanager.model.AppDatabase;
+import com.example.actionhistory.model.AppDatabase;
 import com.example.actionhistory.taskmanager.model.Task;
 
 public class TaskFormActivity extends AppCompatActivity {
 
     private EditText inputTaskTitle, inputTaskDescription, inputCreatedAt;
     private CheckBox inputIsCompleted;
-    private AppDatabase db;
 
     private Task currentTask = null;
 
@@ -32,7 +31,7 @@ public class TaskFormActivity extends AppCompatActivity {
         inputIsCompleted = findViewById(R.id.inputIsCompleted);
         Button btnSaveTask = findViewById(R.id.btnSaveTask);
 
-        db = Room.databaseBuilder(
+        AppDatabase db = Room.databaseBuilder(
                 getApplicationContext(),
                 AppDatabase.class,
                 "task_manager_db"
@@ -56,6 +55,7 @@ public class TaskFormActivity extends AppCompatActivity {
     }
 
     private void saveOrUpdateTask() {
+        TaskController controller = new TaskController(this);
 
         String title = inputTaskTitle.getText().toString().trim();
         String createdAt = inputCreatedAt.getText().toString().trim();
@@ -71,24 +71,27 @@ public class TaskFormActivity extends AppCompatActivity {
         }
 
         if (currentTask == null) {
+
             Task newTask = new Task();
             newTask.setTaskTitle(title);
             newTask.setTaskDescription(inputTaskDescription.getText().toString().trim());
             newTask.setCreatedAt(createdAt);
             newTask.setCompleted(inputIsCompleted.isChecked());
 
-            db.taskDao().insertTask(newTask);
+            controller.insertTask(newTask);
             Toast.makeText(this, "Tarea creada.", Toast.LENGTH_SHORT).show();
 
         } else {
+
             currentTask.setTaskTitle(title);
             currentTask.setTaskDescription(inputTaskDescription.getText().toString().trim());
             currentTask.setCreatedAt(createdAt);
             currentTask.setCompleted(inputIsCompleted.isChecked());
 
-            db.taskDao().updateTask(currentTask);
+            controller.updateTask(currentTask);
             Toast.makeText(this, "Tarea actualizada.", Toast.LENGTH_SHORT).show();
         }
+
 
         finish();
     }

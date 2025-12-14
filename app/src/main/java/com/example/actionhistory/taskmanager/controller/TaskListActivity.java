@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.actionhistory.R;
+import com.example.actionhistory.controller.HistoryListActivity;
 import com.example.actionhistory.taskmanager.model.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+
 
 import java.util.List;
 
@@ -19,21 +22,30 @@ public class TaskListActivity extends AppCompatActivity {
     private TaskController controller;
     private RecyclerView recyclerTasks;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
         recyclerTasks = findViewById(R.id.recyclerTasks);
+
         FloatingActionButton fabAddTask = findViewById(R.id.fabAddTask);
+        FloatingActionButton fabHistory = findViewById(R.id.fabHistory);
 
         fabAddTask.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TaskFormActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, TaskFormActivity.class));
+        });
+
+        fabHistory.setOnClickListener(v -> {
+            startActivity(new Intent(this, HistoryListActivity.class));
         });
 
         controller = new TaskController(this);
     }
+
+
 
     private void loadTasks() {
         List<Task> tasks = controller.getAllTasks();
@@ -48,6 +60,8 @@ public class TaskListActivity extends AppCompatActivity {
             Toast.makeText(this, "Tarea eliminada", Toast.LENGTH_SHORT).show();
         });
     }
+
+
 
     @Override
     protected void onResume() {

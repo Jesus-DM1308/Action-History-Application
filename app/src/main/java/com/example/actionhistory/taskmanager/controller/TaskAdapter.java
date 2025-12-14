@@ -46,14 +46,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.textTaskTitle.setText(task.getTaskTitle());
 
-        // Edita cuando se hace click
+        // Edita cuando se hace click en la tarea
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), TaskFormActivity.class);
             intent.putExtra("task_id", task.getId());
             v.getContext().startActivity(intent);
         });
 
-        // Elimina al hacer un click largo
+        // Elimina al mantener presionado la tarea
         holder.itemView.setOnLongClickListener(v -> {
             if (listener != null) listener.onDeleteTask(task);
             return true;

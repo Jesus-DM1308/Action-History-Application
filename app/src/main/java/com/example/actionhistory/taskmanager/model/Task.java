@@ -37,8 +37,4 @@ public class Task {
 
     public boolean isCompleted() { return isCompleted; }
     public void setCompleted(boolean completed) { isCompleted = completed; }
-
-    public String getTitle() {
-        return taskTitle;
-    }
 }
