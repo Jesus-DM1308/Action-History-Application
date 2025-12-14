@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Task Manager Application</string>
+
+    <!--   activity task form   -->
+    <!--   EditText   -->
+    <string name="task_title_hint">Titulo de la tarea</string>
+    <string name="task_description_hint">Descripcion de la tarea</string>
+    <string name="created_at_hint">Fecha de creacion (AAAA-MM-DD)</string>
+    <!--   CheckBox   -->
+    <string name="completed_text">Completado</string>
+    <!--   Button   -->
+    <string name="save_task_button">Guardar tarea</string>
+    <!--   item task   -->
+    <!--   TextView   -->
+    <string name="item_task_title">Titulo</string>
+
+
+</resources>
